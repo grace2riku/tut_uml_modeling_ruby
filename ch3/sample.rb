@@ -28,4 +28,20 @@ class Sample
         !@attr_a || @attr_b
     end
 
+    def st0_proc(evt, param)
+        case evt
+        when :ev1
+            if gd1?
+                puts "  gd1: #{gd1?}"
+                act1(evt, param)
+                @state = :ST1
+            else
+                puts "  gd1: #{gd1?}, transition is ignored. >>>"
+            end
+        when :ev3
+            act3(evt, param)
+            @state = :ST2
+        end
+    end
+
 end
