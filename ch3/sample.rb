@@ -19,4 +19,13 @@ class Sample
         puts "          -> #{@state}"
         puts 'finished.' if @state == :ST2
     end
+
+    def gd1?
+        @attr_a && @attr_b
+    end
+
+    def gd2?
+        !@attr_a || @attr_b
+    end
+
 end
