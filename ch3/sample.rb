@@ -44,4 +44,21 @@ class Sample
         end
     end
 
+    def st1_proc(evt, param)
+        case evt
+        when :ev2
+            act2(evt, param)
+            puts "    gd2: #{gd2?}"
+            if gd2?
+                @state = :ST2
+            else
+                act3(evt, param)
+                @state = :ST0
+            end
+        when :ev3
+            act3(evt, param)
+            @state = :ST0
+        end
+    end
+
 end
