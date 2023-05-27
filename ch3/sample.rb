@@ -20,14 +20,6 @@ class Sample
         puts 'finished.' if @state == :ST2
     end
 
-    def gd1?
-        @attr_a && @attr_b
-    end
-
-    def gd2?
-        !@attr_a || @attr_b
-    end
-
     def st0_proc(evt, param)
         case evt
         when :ev1
@@ -61,4 +53,25 @@ class Sample
         end
     end
 
+    private
+
+    def act1(evt, prm)
+        puts "    act1: event:#{evt}, param: #{prm}"
+    end
+
+    def act2(evt, prm)
+        puts "    act2: event:#{evt}, param: #{prm}"
+    end
+
+    def act3(evt, prm)
+        puts "    act3: event:#{evt}, param: #{prm}"
+    end
+
+    def gd1?
+        @attr_a && @attr_b
+    end
+
+    def gd2?
+        !@attr_a || @attr_b
+    end
 end
