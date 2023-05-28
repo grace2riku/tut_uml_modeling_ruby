@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 class Sample
+    attr_accessor :attr_a, :attr_b
+
     def initialize
         @state = :ST0
         @attr_a = true
@@ -74,4 +78,40 @@ class Sample
     def gd2?
         !@attr_a || @attr_b
     end
+end
+
+# 検討用クラスのテストケースを提供するクラス
+class SampleTest
+    def test_base(events, data)
+        samp01 = Sample.new
+        samp01.attr_a = data[0]
+        samp01.attr_b = data[1]
+        events.each do |evt|
+            samp01.play(evt, Time.now.usec)
+        end
+        puts '================'
+    end
+
+    def test01
+        test_base(%i[ev1 ev2], [true, true])
+    end
+
+    def test02
+        test_base(%i[ev1 ev3], [false, false]) # :ev1 will be ignored.
+    end
+
+    def test03
+        test_base(%i[ev1 ev2 ev3], [true, false])
+    end
+
+    def run
+        test01
+        test02
+        test03
+    end
+end
+
+if #PROGRAM_NAME == __FILE__
+    test = SampleTest.new
+    test.run
 end
